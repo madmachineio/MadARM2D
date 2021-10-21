@@ -10,11 +10,11 @@ let cSettings: [CSetting] = [
 ]
 
 let package = Package(
-    name: "swiftarm2d",
+    name: "MadARM2D",
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "ARM-2D",
+            name: "MadARM2D",
             targets: [
                 "arm-2d",
                 "arm-2d-wapper"]),
