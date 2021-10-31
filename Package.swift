@@ -4,9 +4,10 @@
 import PackageDescription
 
 let cSettings: [CSetting] = [
-    .headerSearchPath("../arm-2d-header"),
-    .headerSearchPath("../CMSIS/Core/Include"),
-    .headerSearchPath("../CMSIS/DSP/Include"),
+    .headerSearchPath("./arm-2d/Helper/Include"),
+    .headerSearchPath("./arm-2d/Library/Include"),
+    .headerSearchPath("./CMSIS/Core/Include"),
+    .headerSearchPath("./CMSIS/DSP/Include"),
 ]
 
 let package = Package(
@@ -16,17 +17,13 @@ let package = Package(
         .library(
             name: "MadARM2D",
             targets: [
-                "arm-2d",
-                "arm-2d-wapper"]),
+                "MadARM2D"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
-            name: "arm-2d",
-            cSettings: cSettings),
-        .target(
-            name: "arm-2d-wapper",
+            name: "MadARM2D",
             cSettings: cSettings)
     ]
 )
