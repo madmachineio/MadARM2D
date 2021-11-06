@@ -30,20 +30,23 @@ static
 IMPL_PFB_ON_DRAW(__pfb_draw_background_handler){
 	ARM_2D_UNUSED(bIsNewFrame);
 
+	
+    //printf("%s %d\n",__FILE__,__LINE__);
 	arm_2d_rgb16_fill_colour(ptTile, NULL, 0xF800);
-
+  /*   printf("%s %d\n",__FILE__,__LINE__);
 	arm_2d_region_t tBox = {
-		.tSize = { 200, 100 },
+		.tSize = { 100, 100 },
 		.tLocation = { 50, 50 },
 	};
 
 	arm_2d_rgb16_fill_colour(ptTile, &tBox, 0x001F);
-
+     printf("%s %d\n",__FILE__,__LINE__);
 	tBox.tLocation.iX -= 10;
 	tBox.tLocation.iY -= 10;
 
 	arm_2d_rgb16_fill_colour(ptTile, &tBox, 0x07E0);
-
+    printf("%s %d\n",__FILE__,__LINE__);
+	*/
 	draw_bg(ptTile, pTarget);
 
 	return arm_fsm_rt_cpl;
@@ -55,6 +58,7 @@ IMPL_PFB_ON_LOW_LV_RENDERING(__pfb_render_handler){
 
 	ARM_2D_UNUSED(pTarget);
 	ARM_2D_UNUSED(bIsNewFrame);
+
 
 	draw_bitmap(ptTile->tRegion.tLocation.iX,
 		    ptTile->tRegion.tLocation.iY,
@@ -74,6 +78,9 @@ void mad_arm_2d_init(int width,
 		     int (*draw)(int, int, int, int, unsigned char *),
 		     int (*bg)(void *, void *))
 {
+    draw_bitmap = draw;
+    draw_bg = bg;
+
 	arm_2d_init();
 
 	__attribute__((section(".bss.noinit.arm_2d_pfb_pool")))
@@ -81,7 +88,7 @@ void mad_arm_2d_init(int width,
 		arm_2d_pfb_t tFPB;
 		__ALIGNED(4)
 		uint16_t tBuffer[(320) * (240)];
-	} s_tPFBs[2];
+	} s_tPFBs[1];
 
 	arm_2d_helper_pfb_cfg_t tCFG = {
 		.tDisplayArea.tSize = {
@@ -96,6 +103,16 @@ void mad_arm_2d_init(int width,
 		},
 		.FrameBuffer.wBufferSize = sizeof(s_tPFBs[0].tBuffer),
 		.FrameBuffer.hwPFBNum = dimof(s_tPFBs),
+        .Dependency = {
+                .evtOnLowLevelRendering = {
+                    //! callback for low level rendering 
+                    .fnHandler = &__pfb_render_handler,                         
+                },
+                .evtOnDrawing = {
+                    //! callback for drawing GUI 
+                    .fnHandler = &__pfb_draw_background_handler, 
+                },
+            }
 	};
 
 
@@ -106,6 +123,8 @@ void mad_arm_2d_init(int width,
 	}
 
 	while (arm_fsm_rt_cpl != arm_2d_helper_pfb_task(&mad_arm_2d_pfb, NULL));
+
+	//mad_arm_2d_test(&mad_arm_2d_pfb);
 
 }
 
