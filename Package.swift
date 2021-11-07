@@ -8,6 +8,10 @@ let cSettings: [CSetting] = [
     .headerSearchPath("./arm-2d/Library/Include"),
     .headerSearchPath("./CMSIS/Core/Include"),
     .headerSearchPath("./CMSIS/DSP/Include"),
+    .headerSearchPath("./CMSIS/DSP/PrivateInclude"),
+    .unsafeFlags([
+        "-DARM_ALL_FAST_TABLES",
+    ])
 ]
 
 let package = Package(

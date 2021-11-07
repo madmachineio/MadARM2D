@@ -103,6 +103,7 @@ void mad_arm_2d_init(int width,
 		},
 		.FrameBuffer.wBufferSize = sizeof(s_tPFBs[0].tBuffer),
 		.FrameBuffer.hwPFBNum = dimof(s_tPFBs),
+		.FrameBuffer.bSwapRGB16 = true,
         .Dependency = {
                 .evtOnLowLevelRendering = {
                     //! callback for low level rendering 
@@ -124,9 +125,23 @@ void mad_arm_2d_init(int width,
 
 	while (arm_fsm_rt_cpl != arm_2d_helper_pfb_task(&mad_arm_2d_pfb, NULL));
 
-	//mad_arm_2d_test(&mad_arm_2d_pfb);
+	arm_2d_benhmart(&mad_arm_2d_pfb);
 
 }
+
+#include <errno.h>
+#include <sys/times.h>
+
+#undef errno
+extern int  errno;
+
+int
+_times (struct tms *buf)
+{
+  errno = EACCES;
+  return  -1;
+
+}  
 
 #if defined(__clang__)
 #   pragma clang diagnostic pop
