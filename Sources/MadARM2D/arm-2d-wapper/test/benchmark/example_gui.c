@@ -124,7 +124,7 @@ static arm_2d_layer_t s_ptRefreshLayers[] = {
 
 static floating_range_t s_ptFloatingBoxes[] = {
     {
-        .tRegion = {{0-100, 0-100}, {APP_SCREEN_WIDTH + 200, 256 + 200}},
+        .tRegion = {{0-200, 0-200}, {APP_SCREEN_WIDTH + 400, 256 + 400}},
         .ptLayer = &s_ptRefreshLayers[0],
         .tOffset = {-1, -1},
     },
@@ -146,6 +146,18 @@ static floating_range_t s_ptFloatingBoxes[] = {
 };
 
 /*============================ IMPLEMENTATION ================================*/
+
+static volatile uint32_t s_wSystemTimeInMs = 0;
+static volatile bool s_bTimeout = false;
+extern void platform_1ms_event_handler(void);
+
+void platform_1ms_event_handler(void)
+{
+    s_wSystemTimeInMs++; 
+    if (!(s_wSystemTimeInMs & (_BV(10) - 1))) {
+        s_bTimeout = true;
+    }
+}
 
 void example_gui_init(void)
 {

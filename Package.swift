@@ -11,6 +11,7 @@ let cSettings: [CSetting] = [
     .headerSearchPath("./CMSIS/DSP/PrivateInclude"),
     .unsafeFlags([
         "-DARM_ALL_FAST_TABLES",
+        "-O4",
     ])
 ]
 

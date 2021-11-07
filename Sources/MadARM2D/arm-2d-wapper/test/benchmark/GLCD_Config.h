@@ -33,11 +33,11 @@
 #define GLCD_MIRROR_Y   0               /* Mirror Y axis = 1:yes, 0:no */
 #endif
 #ifndef GLCD_SWAP_XY
-#define GLCD_SWAP_XY    1               /* Swap X&Y axis = 1:yes, 0:no */
+#define GLCD_SWAP_XY    0               /* Swap X&Y axis = 1:yes, 0:no */
 #endif
 
 /*---------------------- Graphic LCD physical definitions --------------------*/
-#define GLCD_SIZE_X     240             /* Screen size X (in pixels) */
+#define GLCD_SIZE_X     320             /* Screen size X (in pixels) */
 #define GLCD_SIZE_Y     240             /* Screen size Y (in pixels) */
 #define GLCD_BPP        16              /* Bits per pixel            */
 

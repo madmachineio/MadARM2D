@@ -129,20 +129,6 @@ void mad_arm_2d_init(int width,
 
 }
 
-#include <errno.h>
-#include <sys/times.h>
-
-#undef errno
-extern int  errno;
-
-int
-_times (struct tms *buf)
-{
-  errno = EACCES;
-  return  -1;
-
-}  
-
 #if defined(__clang__)
 #   pragma clang diagnostic pop
 #endif

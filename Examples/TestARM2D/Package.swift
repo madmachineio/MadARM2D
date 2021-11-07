@@ -5,11 +5,11 @@ let package = Package(
     name: "TestARM2D",
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/madmachineio/SwiftIO.git", .upToNextMajor(from: "0.0.1")),
-        .package(url: "https://github.com/madmachineio/MadBoards.git", .upToNextMajor(from: "0.0.1")),
-        .package(url: "https://github.com/madmachineio/MadDrivers.git", .upToNextMajor(from: "0.0.1")),
-        .package(url: "https://github.com/madmachineio/MadARM2D.git", .branch("main")),
-        //.package(path: "/mnt/e/westz/swiftio/src/MadARM2D"),
+        .package(url: "https://github.com/madmachineio/SwiftIO.git", .upToNextMajor(from: "0.0.4")),
+        .package(url: "https://github.com/madmachineio/MadBoards.git", .upToNextMajor(from: "0.0.3")),
+        .package(url: "https://github.com/madmachineio/MadDrivers.git", .upToNextMajor(from: "0.0.8")),
+        //.package(url: "https://github.com/madmachineio/MadARM2D.git", .branch("main")),
+        .package(path: "/mnt/e/westz/swiftio/src/MadARM2D"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.

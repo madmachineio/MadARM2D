@@ -14,6 +14,14 @@ func draw_bg(tile: UnsafeMutableRawPointer?, target: UnsafeMutableRawPointer?) -
     return 0;
 }
 
+func fillSquare(x: Int, y: Int, width: Int, color: UInt16) {
+    for px in y..<(y + width) {
+        for py in x..<(x + width) {
+            screen.writePixel(x: px, y: py, color: color)
+        }
+    }
+}
+
 print("Hello, world!")
 
 let white: UInt16 = 0xFFFF
@@ -22,8 +30,8 @@ let cs = DigitalOut(Id.D9)
 let dc = DigitalOut(Id.D1)
 let rst = DigitalOut(Id.D0)
 let bl = DigitalOut(Id.D4)
-let screen = ST7789(spi: spi, cs: cs, dc: dc, rst: rst, bl: bl, rotation: .angle90)
+let screen = ST7789(spi: spi, cs: cs, dc: dc, rst: rst, bl: bl, width: 320, height: 240, rotation: .angle0)
 screen.clearScreen(white)
 sleep(ms: 1000)
 
-mad_arm_2d_init(240,240,0,240,240,draw_bitmap,draw_bg)
+mad_arm_2d_init(320,240,0,320,240,draw_bitmap,draw_bg)

@@ -54,7 +54,7 @@ extern
 const arm_2d_tile_t c_tileWhiteDotAlpha;
 /*============================ PROTOTYPES ====================================*/
 __attribute__((nothrow)) 
-extern int64_t clock(void);
+extern int64_t swifthal_uptime_get(void);
 
 /*============================ LOCAL VARIABLES ===============================*/
 
@@ -72,7 +72,7 @@ void busy_wheel_init(void)
         s_tDotsLocation[n].iX = (int16_t)(cosf(__PI * (float)n / 4.0f) * __RADIUS);
         s_tAlphaTable[n] = (uint8_t)((float)n * 255.0f / 8.0f);
     }
-    s_lLastTime = clock();
+    s_lLastTime = swifthal_uptime_get();
     s_lLastTime2 = s_lLastTime;
     s_wUnit = (SystemCoreClock  / 1000) * BUSY_WHEEL_SPIN_SPEED;
 }
@@ -88,7 +88,7 @@ void busy_wheel_show(const arm_2d_tile_t *ptTarget, bool bIsNewFrame)
     arm_2d_region_t tTargetRegion = c_tileWhiteDot.tRegion;
     
     if (bIsNewFrame) {
-        int64_t lClocks = clock();
+        int64_t lClocks = swifthal_uptime_get();
         int32_t nElapsed = (int32_t)((lClocks - s_lLastTime));
         if (nElapsed >= (int32_t)s_wUnit) {
             s_lLastTime = lClocks;
@@ -129,7 +129,7 @@ void busy_wheel2_show(const arm_2d_tile_t *ptTarget, bool bIsNewFrame)
     arm_2d_region_t tTargetRegion = c_tileWhiteDot.tRegion;
     
     if (bIsNewFrame) {
-        int64_t lClocks = clock();
+        int64_t lClocks = swifthal_uptime_get();
         int32_t nElapsed = (int32_t)((lClocks - s_lLastTime2));
         if (nElapsed >= (int32_t)s_wUnit) {
             s_lLastTime2 = lClocks;
