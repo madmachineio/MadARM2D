@@ -1,7 +1,7 @@
 import SwiftIO
 import SwiftIOBoard
 import MadARM2D
-import ST7789
+//import ST7789
 
 
 func draw_bitmap(x: Int32, y: Int32, width: Int32, height: Int32,  data:  UnsafeMutablePointer<UInt8>?) -> Int32 {

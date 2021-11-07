@@ -7,7 +7,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/madmachineio/SwiftIO.git", .upToNextMajor(from: "0.0.4")),
         .package(url: "https://github.com/madmachineio/MadBoards.git", .upToNextMajor(from: "0.0.3")),
-        .package(url: "https://github.com/madmachineio/MadDrivers.git", .upToNextMajor(from: "0.0.8")),
+        //.package(url: "https://github.com/madmachineio/MadDrivers.git", .upToNextMajor(from: "0.0.8")),
         //.package(url: "https://github.com/madmachineio/MadARM2D.git", .branch("main")),
         .package(path: "/mnt/e/westz/swiftio/src/MadARM2D"),
     ],
@@ -21,7 +21,7 @@ let package = Package(
                 "MadBoards",
                 "MadARM2D",
                 // use specific library would speed up the compile procedure
-                .product(name: "MadDrivers", package: "MadDrivers")
+                //.product(name: "MadDrivers", package: "MadDrivers")
             ]),
         .testTarget(
             name: "TestARM2DTests",
