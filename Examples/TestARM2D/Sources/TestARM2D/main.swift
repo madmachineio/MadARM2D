@@ -1,17 +1,17 @@
 import SwiftIO
-import SwiftIOBoard
+import MadBoard
 import MadARM2D
-//import ST7789
+import ST7789
 
 
 func draw_bitmap(x: Int32, y: Int32, width: Int32, height: Int32,  data:  UnsafeMutablePointer<UInt8>?) -> Int32 {
     let buffer = UnsafeBufferPointer(start: data!, count: Int(width * height * 2))
-    screen.writeBitmap(x: Int(x), y: Int(y), width: Int(width), height: Int(height), data: Array(buffer))
+    screen.writeBitmap(x: Int(x), y: Int(y), width: Int(width), height: Int(height), data: buffer)
     return 0
 }
 
 func draw_bg(tile: UnsafeMutableRawPointer?, target: UnsafeMutableRawPointer?) -> Int32 {
-    return 0;
+    return 0
 }
 
 func fillSquare(x: Int, y: Int, width: Int, color: UInt16) {
