@@ -21,7 +21,8 @@ let package = Package(
                 "MadBoards",
                 "MadARM2D",
                 // use specific library would speed up the compile procedure
-                .product(name: "ST7789", package: "MadDrivers")
+                .product(name: "MadDrivers", package: "MadDrivers")
+                //.product(name: "ST7789", package: "MadDrivers")
             ]),
         .testTarget(
             name: "TestARM2DTests",

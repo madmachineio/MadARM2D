@@ -195,7 +195,7 @@ void arm_2d_helper_perf_counter_start(void)
 __OVERRIDE_WEAK
 int32_t arm_2d_helper_perf_counter_stop(void)
 {
-    return (swifthal_hwcycle_get() - start_ticks)*60000;
+    return (swifthal_hwcycle_get() - start_ticks);
 }
 
 
